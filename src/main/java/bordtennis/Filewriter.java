@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Filewriter {
 
-    String filename;
+    String filename = "src/main/java/bordtennis/table.txt";
 
     public List<String> getTable() {
         List<String> values = new ArrayList<String>();
@@ -38,7 +38,6 @@ public class Filewriter {
             for(String player : table.keySet()){
                 String output = player;
                 output += "," + table.get(player).get(0) + "," + table.get(player).get(1);
-                System.out.println(output);
                 fw.write(output + "\n");
             }
             fw.close();
