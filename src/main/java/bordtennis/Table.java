@@ -5,11 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.math.RoundingMode;  
+import java.text.DecimalFormat;  
 
 public class Table {
-
+    
     Filewriter filewriter;
     Map<String,List<Integer>> table = new HashMap<String,List<Integer>>();
+    private static final DecimalFormat decfor = new DecimalFormat("0.00");  
 
     public void getTable(){
         List<String> tableList = filewriter.getTable();
@@ -26,10 +29,13 @@ public class Table {
     }
 
     public void printTable(){
-        System.out.println("\nSpiller  Kamper  Poeng");
+        System.out.println("\nSpiller  Kamper  Poeng   p/g");
         for(String player : table.keySet()){
             String output = player;
-            output += "      " + table.get(player).get(0) + "      " + table.get(player).get(1);
+            int matches = table.get(player).get(0);
+            int points = table.get(player).get(1);
+            double ppg = ((double)points) / ((double)matches);
+            output += "      " + matches + "      " + points + "     " + decfor.format(ppg);
             System.out.println(output);
         }
         System.out.println("\n");
